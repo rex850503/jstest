@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        .modal-wrapper.active{
+            display: block;
+        }
+
+        .modal-wrapper{
+            position: fixed;
+            background-color: rgba(0, 0, 0, 0.6);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+        }
+
+        .modal-content{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 90%;
+            max-width: 600px;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .btn-close{
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        ul>li.active{
+            color: red;
+        }
+
+        .img-wrapper{
+            margin: auto;
+            width: 80%;
+            max-width: 1140px;
+        }
+
+        .img-main{
+            margin-bottom: 10px;
+        }
+
+        .img-fluid{
+            width: 100%;
+        }
+
+        .thubnails{
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .thubnails>img{
+            width: 150px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .thubnails>img.active{
+            border: 3px solid salmon;
+        }
+
+    </style>
+</head>
+<body>
+    <h3>Js蓋板</h3>
+    <a href="javascript:;" onclick="openModal()" id="open-modal">打開蓋板</a>
+    <div class="modal-wrapper">
+        <div class="modal-content">廣告區塊
+            <div id="btn-close-switch" class="btn-close">X</div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+
+    <h3>Jq顏色改變</h3>
+    <ul>
+        <li>01</li>
+        <li>02</li>
+        <li>03</li>
+        <li>04</li>
+    </ul>
+
+    <h3>點小圖換大圖</h3>
+    <div class="img-wrapper">
+        <div class="img-main">
+            <img class="img-fluid" src="./coffee01.jpg" alt="">
+        </div>
+        <div class="thubnails">
+            <img class="active" src="./coffee01.jpg" alt="">
+            <img src="./coffee02.jpg" alt="">
+            <img src="./coffee03.jpg" alt="">
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $('ul>li').addClass('active');
+
+        $('.thubnails>img').on('click', function(e){
+            //.thubnails>img 小圖 點下去 之後
+            //.img-main>img  主圖 的src 更改為 小圖 的 src
+            $('.img-main>img').attr('src', $(this).attr('src'))
+            $(this).addClass('active').siblings().removeClass('active')
+        }) // .thubnails>img end
+
+        //以下是JS
+        let btnCloseSwitch = document.getElementById('btn-close-switch');
+        let modalWrapper   = document.getElementsByClassName('modal-wrapper')[0]; 
+        let modalContent   = document.getElementsByClassName('modal-content')[0]; 
+
+        btnCloseSwitch.addEventListener('click', closeModal)
+        modalWrapper.addEventListener('click', closeModal)
+        modalContent.addEventListener('click', closeModal)
+
+        function openModal(){
+            modalWrapper.classList.add("active");
+        }
+
+        function closeModal(e){
+            console.log(e.target) //可以知道被點擊的目標是誰
+
+            if(e.target == this){  //當點擊的的跟目標是一樣的話才可以關閉
+                modalWrapper.classList.remove("active");
+            }
+        }
+
+
+
+        console.log("let變數!!!!")
+
+        var num = 1;
+        let box = "love"
+
+        box = box + "wi" //用let定義一個box
+
+        console.log("num = " + num)
+        console.log(`我的名字是${box}`)
+
+        document.getElementById("btn-nav-toggle").addEventListener('click',openNav)
+
+        function openNav(){
+            console.log('點按鈕打開導覽列')
+
+            if( document.getElementById("primary-navigation").classList.contains('active') == true ){
+              document.getElementById("primary-navigation").classList.remove('active');
+              document.getElementById("btn-nav-toggle").textContent = 'menu';
+            }else{
+                document.getElementById('primary-navigation').classList.add('active');
+                document.getElementById("btn-nav-toggle").textContent = 'X';
+            }
+            
+        }
+
+        // let age = 8;
+
+        // if (age >= 18){
+        //     console.log(`年齡為${age}，您可以飲酒`)
+        // }else{
+        //     console.log(`年齡為${age}，您未滿十八不可以喝喝`)
+        // }
+
+        // let acc = 'rex';
+        // let password = '123';
+
+        // if (acc == 'rex' && password == '123') {
+        //     console.log(`恭喜登入成功`)
+        // }else if (acc == 'rex' && password != '123') {
+        //     console.log(`您的密碼不對`)
+        // }else  if (acc != 'rex' && password == '123') {
+        //     console.log(`您的帳號不對`)
+        // } else {
+        //     console.log(`您的帳號密碼都不對`);
+        // }
+
+        // while (num <= 10){
+        //     num = num + 1
+        //     console.log(num)
+        // }
+
+        // let x = 0; // 乘法結果
+
+        // for(let i = 2; i <10; i++){ //第一個數字的迴圈 2~9
+
+        //     for(let j = 1; j<10; j++){  // 第二個數字的迴圈 1~9
+                
+        //         x = i * j
+
+        //        console.log(`${i} * ${j} = ${x}`)
+        //     }
+        // }
+
+        let pet = {
+            name: '小白',
+            age: 3,
+            color: 'white',
+            brak:function(){
+                alert('汪')
+            }//break end
+        }// pet end
+
+        console.log(pet.name) //點記法
+        console.log(pet['name']) //括弧記法
+
+    </script>
+</body>
+</html>

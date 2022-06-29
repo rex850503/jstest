@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        .question-content{
+            position: relative;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 7px;
+            padding: 10px 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .icon-arrow{
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            right: 10px;
+            top: 50%;
+            transform:translateY(-50%);
+            transition: transform .3s;
+        }
+
+        .icon-arrow::after{
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-top: 3px solid seagreen;
+            border-left: 3px solid seagreen;
+            left: 50%;
+            top: calc(50% - 2px);
+            transform:translate(-50%,-50%) rotate(-135deg);
+        }
+
+        .answer{
+            display: none;
+        }
+
+        .question-content.active .answer{
+            display: block;
+        }
+
+        .question-content.active .icon-arrow{
+            transform: rotate(180deg);
+            top: 7px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>沒有什麼問題</h2>
+        <!-- .question-content*5>.question{Q$$}>.icon-arrow^.answer{A$$} -->
+        <div class="question-content">
+            <div class="question">
+                Q01
+                <div class="icon-arrow"></div>
+            </div>
+            <div class="answer">
+                A01
+            </div>
+        </div>
+        <div class="question-content">
+            <div class="question">
+                Q02
+                <div class="icon-arrow"></div>
+            </div>
+            <div class="answer">
+                A02
+            </div>
+        </div>
+        <div class="question-content">
+            <div class="question">
+                Q03
+                <div class="icon-arrow"></div>
+            </div>
+            <div class="answer">
+                A03
+            </div>
+        </div>
+        <div class="question-content">
+            <div class="question">
+                Q04
+                <div class="icon-arrow"></div>
+            </div>
+            <div class="answer">
+                A04
+            </div>
+        </div>
+        <div class="question-content">
+            <div class="question">
+                Q05
+                <div class="icon-arrow"></div>
+            </div>
+            <div class="answer">
+                A05
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        var question = $('.question-content');
+
+        question.on('click', function(){
+            if($(this).addClass('active') != true){
+                $(this).addClass('active').siblings().removeClass('active');
+            }else{
+                $(this).removeClass('active');
+            }
+            
+        })
+
+    </script>
+</body>
+</html>
