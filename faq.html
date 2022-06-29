@@ -24,8 +24,7 @@
             width: 30px;
             height: 30px;
             right: 10px;
-            top: 50%;
-            transform:translateY(-50%);
+            top: 5px;
             transition: transform .3s;
         }
 
@@ -51,7 +50,6 @@
 
         .question-content.active .icon-arrow{
             transform: rotate(180deg);
-            top: 7px;
         }
 
     </style>
@@ -112,7 +110,7 @@
         var question = $('.question-content');
 
         question.on('click', function(){
-            if($(this).addClass('active') != true){
+            if($(this).hasClass('active') != true){
                 $(this).addClass('active').siblings().removeClass('active');
             }else{
                 $(this).removeClass('active');
